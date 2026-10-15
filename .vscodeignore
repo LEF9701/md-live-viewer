@@ -2,6 +2,7 @@
 !dist/extension.js
 !dist/media/**
 !images/icon.png
+!images/screenshots/**
 !package.json
 !README.md
 !CHANGELOG.md

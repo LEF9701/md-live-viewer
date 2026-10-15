@@ -1,26 +1,49 @@
 {
   "name": "md-live-viewer",
   "displayName": "Markdown Live Viewer",
-  "description": "Live Markdown preview in the style of LaTeX Workshop: instant refresh while typing, light/dark/auto themes, KaTeX math, Mermaid diagrams and two-way source sync.",
-  "version": "0.3.0",
+  "description": "Live Markdown preview that updates as you type, with light/dark themes, a sidebar dashboard, Mermaid diagrams, KaTeX math and a beginner-friendly guide.",
+  "version": "1.0.0",
   "publisher": "lawrenceshin",
   "author": {
     "name": "Lawrence Shin"
   },
   "license": "MIT",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#1f2433",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LEF9701/md-live-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LEF9701/md-live-viewer/issues"
+  },
+  "homepage": "https://github.com/LEF9701/md-live-viewer#readme",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Visualization",
+    "Education",
     "Other"
   ],
   "keywords": [
     "markdown",
+    "markdown preview",
+    "live preview",
     "preview",
     "mermaid",
+    "diagram",
     "katex",
-    "live"
+    "math",
+    "dark mode",
+    "light mode",
+    "beginner",
+    "markdown guide",
+    "latex workshop",
+    "notes"
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
@@ -197,6 +220,5 @@
     "@types/node": "^26.6.5",
     "@types/markdown-it": "^14.2.0",
     "@vscode/vsce": "^4.0.0"
-  },
-  "icon": "images/icon.png"
+  }
 }

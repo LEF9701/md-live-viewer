@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0 — 2026-10-15
+
+- First Marketplace release.
+- Detailed README with screenshots and an animated demo.
+- Repository, issue tracker and Marketplace gallery details added.
+
 ## 0.3.0 — 2026-10-15
 
 - New beginner-friendly Markdown Guide with pictures, side-by-side examples, copy/insert buttons, common mistakes, cheat sheet and a try-it box.
