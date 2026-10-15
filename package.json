@@ -1,0 +1,202 @@
+{
+  "name": "md-live-viewer",
+  "displayName": "Markdown Live Viewer",
+  "description": "Live Markdown preview in the style of LaTeX Workshop: instant refresh while typing, light/dark/auto themes, KaTeX math, Mermaid diagrams and two-way source sync.",
+  "version": "0.3.0",
+  "publisher": "lawrenceshin",
+  "author": {
+    "name": "Lawrence Shin"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "markdown",
+    "preview",
+    "mermaid",
+    "katex",
+    "live"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:markdown",
+    "onWebviewPanel:mdViewer.preview",
+    "onView:mdViewer.dashboard"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "mdViewer.openPreview",
+        "title": "Open Preview to the Side",
+        "category": "MD Viewer",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "mdViewer.toggleTheme",
+        "title": "Toggle Preview Theme (Light / Dark / Auto)",
+        "category": "MD Viewer"
+      },
+      {
+        "command": "mdViewer.refresh",
+        "title": "Refresh Preview",
+        "category": "MD Viewer",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "mdViewer.rescanFiles",
+        "title": "Rescan Markdown Files",
+        "category": "MD Viewer",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "mdViewer.openSettings",
+        "title": "Open Settings",
+        "category": "MD Viewer",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "mdViewer.openGuide",
+        "title": "Markdown Guide for Beginners",
+        "category": "MD Viewer",
+        "icon": "$(book)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "mdViewer.openPreview",
+        "key": "ctrl+shift+alt+v",
+        "mac": "cmd+shift+alt+v",
+        "when": "editorLangId == markdown"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "mdViewer.openPreview",
+          "when": "editorLangId == markdown",
+          "group": "navigation"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "mdViewer.openPreview",
+          "when": "view == mdViewer.dashboard",
+          "group": "navigation@1"
+        },
+        {
+          "command": "mdViewer.openGuide",
+          "when": "view == mdViewer.dashboard",
+          "group": "navigation@2"
+        },
+        {
+          "command": "mdViewer.openSettings",
+          "when": "view == mdViewer.dashboard",
+          "group": "navigation@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Markdown Live Viewer",
+      "properties": {
+        "mdViewer.refreshOn": {
+          "type": "string",
+          "enum": [
+            "type",
+            "save",
+            "both"
+          ],
+          "default": "both",
+          "description": "When the preview re-renders: while typing, on save, or both."
+        },
+        "mdViewer.typeDelay": {
+          "type": "number",
+          "default": 150,
+          "minimum": 0,
+          "description": "Debounce delay in milliseconds for live refresh while typing."
+        },
+        "mdViewer.theme": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "light",
+            "dark"
+          ],
+          "default": "auto",
+          "description": "Preview colour theme. 'auto' follows the VS Code theme."
+        },
+        "mdViewer.scrollSync": {
+          "type": "boolean",
+          "default": true,
+          "description": "Scroll the preview to follow the editor."
+        },
+        "mdViewer.math": {
+          "type": "boolean",
+          "default": true,
+          "description": "Render $…$ and $$…$$ math with KaTeX."
+        },
+        "mdViewer.mermaid": {
+          "type": "boolean",
+          "default": true,
+          "description": "Render ```mermaid code blocks as diagrams."
+        },
+        "mdViewer.fontSize": {
+          "type": "number",
+          "default": 15,
+          "description": "Preview font size in pixels."
+        },
+        "mdViewer.customCss": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute or workspace-relative path to an extra stylesheet."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "mdViewer",
+          "title": "Markdown Live Viewer",
+          "icon": "dist/media/activity.svg"
+        }
+      ]
+    },
+    "views": {
+      "mdViewer": [
+        {
+          "type": "webview",
+          "id": "mdViewer.dashboard",
+          "name": "Dashboard"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "test": "node build.mjs && node --test test/*.test.js",
+    "package": "npm run build && vsce package --no-dependencies",
+    "vscode:prepublish": "npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "markdown-it": "^15.0.2",
+    "markdown-it-texmath": "^1.0.0",
+    "katex": "^0.19.0",
+    "highlight.js": "^11.12.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "markdown-it-footnote": "^4.0.0",
+    "mermaid": "^12.2.0",
+    "typescript": "^7.0.2",
+    "esbuild": "^0.28.2",
+    "@types/vscode": "1.85.0",
+    "@types/node": "^26.6.5",
+    "@types/markdown-it": "^14.2.0",
+    "@vscode/vsce": "^4.0.0"
+  },
+  "icon": "images/icon.png"
+}
